@@ -3,7 +3,7 @@
 just for my personal taste, change icon to original youtube, rather than rvx for inotia00 patches, and add anddea patches. 
 
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/rvc_magisk)
-[![CI](https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml/badge.svg?event=schedule)]([https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml](https://github.com/pembotol/Rev/actions/workflows/ci.yml)
+[![CI](https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml/badge.svg?event=schedule)](https://github.com/pembotol/Rev/actions/workflows/ci.yml)
 
 Get the [latest CI release](https://github.com/pembotol/Rev/releases).
 
