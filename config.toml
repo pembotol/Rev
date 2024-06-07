@@ -10,7 +10,7 @@ apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 patches-source = "anddea/revanced-patches"
 integrations-source = "anddea/revanced-integrations"
 cli-source = "inotia00/revanced-cli"
-rv-brand = "ReVanced eXtended"
+rv-brand = "ReVanced eXtended anddea"
 build-mode = "module"
 
 
