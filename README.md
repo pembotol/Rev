@@ -1,11 +1,9 @@
 # ReVanced Magisk Module
 
-just for personal use, change icon to original youtube, rather than rvx. all credit mean to be author.
+just for my personal taste, change icon to original youtube, rather than rvx for inotia00 patches, and add anddea patches. 
 
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/rvc_magisk)
-[![CI](https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml/badge.svg?event=schedule)](https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml)
-
-Extensive ReVanced builder  
+[![CI](https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml/badge.svg?event=schedule)](https://github.com/j-hc/revanced-magisk-module/actions/workflows/ci.yml) 
 
 Get the [latest CI release](https://github.com/j-hc/revanced-magisk-module/releases).
 
@@ -46,5 +44,6 @@ $ ./build.sh
 [j-hc](https://github.com/j-hc) for
 [zygisk-detach](https://github.com/j-hc/zygisk-detach) and the [script on which this is based on](https://github.com/j-hc/revanced-magisk-module).
 
-[anddea](https://github.com/anddea) for [revanced-extended patches](https://github.com/anddea/revanced-patches). 
-[inotia00](https://github.com/inotia00) for [revanced-extended patches](https://github.com/inotia00/revanced-patches)
+[anddea](https://github.com/anddea) for [revanced-extended patches](https://github.com/anddea/revanced-patches).
+ 
+[inotia00](https://github.com/inotia00) for [revanced-extended patches](https://github.com/inotia00/revanced-patches).
