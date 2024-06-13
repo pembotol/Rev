@@ -43,7 +43,5 @@ $ ./build.sh
 ## Credits
 [j-hc](https://github.com/j-hc) for
 [zygisk-detach](https://github.com/j-hc/zygisk-detach) and the [script on which this is based on](https://github.com/j-hc/revanced-magisk-module).
-
-[anddea](https://github.com/anddea) for [revanced-extended patches](https://github.com/anddea/revanced-patches).
  
 [inotia00](https://github.com/inotia00) for [revanced-extended patches](https://github.com/inotia00/revanced-patches).
