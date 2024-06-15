@@ -42,7 +42,7 @@ else
 	git clone https://github.com/pembotol/Rev --recurse --depth 1
 	sed -i '/^enabled.*/d; /^\[.*\]/a enabled = false' Rev/config.toml
 fi
-cd revanced-magisk-module
+cd Rev
 chmod +x build.sh build-termux.sh
 
 if ask "Do you want to open the config.toml for customizations? [y/n]"; then
