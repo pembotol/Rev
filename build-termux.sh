@@ -35,12 +35,12 @@ if [ -d revanced-magisk-module ]; then
 		cp -f Rev/config.toml .
 		rm -rf revanced-magisk-module
 		git clone https://github.com/pembotol/Rev --recurse --depth 1
-		mv -f config.toml revanced-magisk-module/config.toml
+		mv -f config.toml Rev/config.toml
 	fi
 else
 	pr "Cloning revanced-magisk-module."
 	git clone https://github.com/pembotol/Rev --recurse --depth 1
-	sed -i '/^enabled.*/d; /^\[.*\]/a enabled = false' revanced-magisk-module/config.toml
+	sed -i '/^enabled.*/d; /^\[.*\]/a enabled = false' Rev/config.toml
 fi
 cd revanced-magisk-module
 chmod +x build.sh build-termux.sh
