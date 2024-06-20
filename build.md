@@ -1,6 +1,7 @@
 Music (arm-v7a): 7.02.51  
 Music (arm64-v8a): 7.02.51  
 YouTube: 19.20.34  
+YouTube-Extended: 19.21.40  
 just for my personal taste  
 
 [main repo](https://github.com/pembotol/Rev)
