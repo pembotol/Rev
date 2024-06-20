@@ -13,18 +13,16 @@ rv-brand = "ReVanced eXtended anddea"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 build-mode = "module"
 included-patches = "'MaterialYou'"
-excluded-patches = "'Custom package name' 'Disable auto captions' 'Enable debug logging'"
 
 [Music]
 patches-source = "inotia00/revanced-patches"
 integrations-source = "inotia00/revanced-integrations"
 cli-source = "inotia00/revanced-cli"
-rv-brand = "ReVanced Music anddea"
+rv-brand = "ReVanced Music"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
 build-mode = "module"
-included-patches = "'Replace cast button'"
-excluded-patches = "'Custom package name' 'Translations'"
+excluded-patches = "'Change start page' 'Custom branding icon for YouTube Music' 'Custom branding name for YouTube Music' 'Custom package name'"
 
 [YouTube-Extended]
 app-name = "YouTube"
