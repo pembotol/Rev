@@ -20,7 +20,8 @@ integrations-source = "anddea/revanced-integrations"
 cli-source = "inotia00/revanced-cli"
 rv-brand = "ReVanced eXtended Music"
 build-mode = "module" 
-arch = "both"
+excluded-patches = "'Custom branding icon YouTube Music' 'Custom package name'"
+arch = "arm64-v8a"
 
 [YouTube-Extended]
 app-name = "YouTube"
