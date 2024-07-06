@@ -12,6 +12,7 @@ cli-source = "inotia00/revanced-cli"
 rv-brand = "eXtended anddea"
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube/"
 build-mode = "module"
+included-patches = "'MaterialYou'"
 
 [Music]
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
