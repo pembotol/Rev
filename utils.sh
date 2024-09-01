@@ -202,6 +202,26 @@ isoneof() {
 	return 1
 }
 
+merge_splits() {
+	local bundle=$1 output=$2
+	gh_dl "$TEMP_DIR/apkeditor.jar" "https://github.com/REAndroid/APKEditor/releases/download/V1.3.9/APKEditor-1.3.9.jar" >/dev/null || return 1
+	if ! OP=$(java -jar "$TEMP_DIR/apkeditor.jar" merge -i "${bundle}" -o "${bundle}.mzip" -clean-meta -f 2>&1); then
+		epr "$OP"
+		return 1
+	fi
+	# this is required because of apksig
+	mkdir "${bundle}-zip"
+	unzip -qo "${bundle}.mzip" -d "${bundle}-zip"
+	cd "${bundle}-zip" || abort
+	zip -0rq "../../${bundle}.zip" .
+	cd ../.. || abort
+	pr "Merging splits"
+	patch_apk "${bundle}.zip" "${output}" "--exclusive" "${args[cli]}" "${args[ptjar]}"
+	local ret=$?
+	rm -r "${bundle}-zip" "${bundle}.zip" "${bundle}.mzip" || :
+	return $ret
+}
+
 # -------------------- apkmirror --------------------
 dl_apkmirror() {
 	local url=$1 version=${2// /-} output=$3 arch=$4 dpi=$5 apkorbundle=APK
@@ -231,7 +251,16 @@ dl_apkmirror() {
 	url=$(echo "$resp" | $HTMLQ --base https://www.apkmirror.com --attribute href "a.btn") || return 1
 	if [ "$apkorbundle" = BUNDLE ] && [[ $url != *"&forcebaseapk=true" ]]; then url="${url}&forcebaseapk=true"; fi
 	url=$(req "$url" - | $HTMLQ --base https://www.apkmirror.com --attribute href "span > a[rel = nofollow]") || return 1
+<<<<<<< HEAD
 	req "$url" "$output"
+=======
+	if [ "$is_bundle" = true ]; then
+		req "$url" "${output}.apkm"
+		merge_splits "${output}.apkm" "${output}"
+	else
+		req "$url" "${output}"
+	fi
+>>>>>>> a8ddca3 (fix merged apks for building module)
 }
 get_apkmirror_vers() {
 	local vers apkm_resp
@@ -308,8 +337,10 @@ patch_apk() {
 --keystore-entry-password=123456789 --keystore-password=123456789 --signer=jhc --keystore-entry-alias=jhc --options=options.json"
 	if [ "$OS" = Android ]; then cmd+=" --custom-aapt2-binary=${AAPT2}"; fi
 	pr "$cmd"
-	eval "$cmd"
-	[ -f "$patched_apk" ]
+	if eval "$cmd"; then [ -f "$patched_apk" ]; else
+		rm "$patched_apk" 2>/dev/null || :
+		return 1
+	fi
 }
 
 check_sig() {
