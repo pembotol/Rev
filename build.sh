@@ -169,6 +169,7 @@ rm -rf temp/tmp.*
 if [ -z "$(ls -A1 ${BUILD_DIR})" ]; then abort "All builds failed."; fi
 
 log "just for my personal taste"
+log "\nInstall [MicroG](https://github.com/ReVanced/GmsCore/releases) to be able to use non-root YouTube or YouTube-Music."
 log "\n[main repo](https://github.com/pembotol/Rev)\n"
 log "$(cat $TEMP_DIR/*-rv/changelog.md)"
 
