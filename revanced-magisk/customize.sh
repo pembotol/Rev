@@ -98,7 +98,9 @@ install() {
 }
 if [ $INS = true ] && ! install; then abort; fi
 
+ui_print "* Extracting native libs"
 BASEPATHLIB=${BASEPATH}/lib/${ARCH}
+<<<<<<< HEAD
 if [ -z "$(ls -A1 "$BASEPATHLIB")" ]; then
         ui_print "- Extracting native libs"
         mkdir -p "$BASEPATHLIB"
@@ -109,6 +111,16 @@ if [ -z "$(ls -A1 "$BASEPATHLIB")" ]; then
         set_perm_recursive "${BASEPATH}/lib" 1000 1000 755 755 u:object_r:apk_data_file:s0
 fi
 ui_print "- Setting Permissions"
+=======
+if [ ! -d "$BASEPATHLIB" ]; then mkdir -p "$BASEPATHLIB"; else rm "$BASEPATHLIB/*" || :; fi
+if ! op=$(unzip -v -j "$MODPATH/$PKG_NAME.apk" lib/"${ARCH_LIB}"/* -d "$BASEPATHLIB" 2>&1); then
+	ui_print "ERROR: extracting native libs failed"
+	abort "$op"
+fi
+set_perm_recursive "${BASEPATH}/lib" 1000 1000 755 755 u:object_r:apk_data_file:s0
+
+ui_print "* Setting Permissions"
+>>>>>>> 16ea26d (update module)
 set_perm "$MODPATH/base.apk" 1000 1000 644 u:object_r:apk_data_file:s0
 
 ui_print "- Mounting $PKG_NAME"
