@@ -95,22 +95,45 @@ install() {
         else
                 abort "ERROR: install $PKG_NAME manually and reflash the module"
         fi
+	break
+     done
+     settings put global verifier_verify_adb_installs "$VERIF_ADB"
 }
 if [ $INS = true ] && ! install; then abort; fi
-
-ui_print "* Extracting native libs"
 BASEPATHLIB=${BASEPATH}/lib/${ARCH}
-<<<<<<< HEAD
-if [ -z "$(ls -A1 "$BASEPATHLIB")" ]; then
-        ui_print "- Extracting native libs"
-        mkdir -p "$BASEPATHLIB"
-        if ! op=$(unzip -j "$MODPATH"/"$PKG_NAME".apk lib/"${ARCH_LIB}"/* -d "$BASEPATHLIB" 2>&1); then
-                ui_print "ERROR: extracting native libs failed"
-                abort "$op"
-        fi
-        set_perm_recursive "${BASEPATH}/lib" 1000 1000 755 755 u:object_r:apk_data_file:s0
+if [ $INS = true ] || [ -z "$(ls -A1 "$BASEPATHLIB")" ]; then
+	ui_print "* Extracting native libs"
+	if [ ! -d "$BASEPATHLIB" ]; then mkdir -p "$BASEPATHLIB"; else rm -f "$BASEPATHLIB"/* >/dev/null 2>&1 || :; fi
+	if ! op=$(unzip -o -j "$MODPATH/$PKG_NAME.apk" "lib/${ARCH_LIB}/*" -d "$BASEPATHLIB" 2>&1); then
+		ui_print "ERROR: extracting native libs failed"
+		abort "$op"
+	fi
+	set_perm_recursive "${BASEPATH}/lib" 1000 1000 755 755 u:object_r:apk_data_file:s0
 fi
+
 ui_print "- Setting Permissions"
 set_perm "$MODPATH/base.apk" 1000 1000 644 u:object_r:apk_data_file:s0
 
-ui_print "- Mounting $PKG_NAME"
+ui_print "- Mounting $PKG_NAME
+mkdir -p "/data/adb/rvhc"
+RVPATH=/data/adb/rvhc/${MODPATH##*/}.apk
+mv -f "$MODPATH/base.apk" "$RVPATH"
+
+if ! op=$(mm mount -o bind "$RVPATH" "$BASEPATH/base.apk" 2>&1); then
+		ui_print "ERROR: Mount failed!"
+		ui_print "$op"
+fi
+am force-stop "$PKG_NAME"
+ui_print "* Optimizing $PKG_NAME"
+nohup cmd package compile --reset "$PKG_NAME" >/dev/null 2>&1 &
+
+ui_print "* Cleanup"
+rm -rf "${MODPATH:?}/bin" "$MODPATH/$PKG_NAME.apk"
+
+if [ "$KSU" ] && [ -d "/data/adb/modules/zygisk-assistant" ]; then
+       ui_print "* If you are using zygisk-assistant, you need to"
+       ui_print "  give root permissions to $PKG_NAME"
+fi
+
+ui_print "* Done"
+ui_print " "
