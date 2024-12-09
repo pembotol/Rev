@@ -1,5 +1,4 @@
 # ReVanced Magisk Module
-<<<<<<< HEAD
 
 just for my personal taste, 
 ## credits
